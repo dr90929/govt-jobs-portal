@@ -1,6 +1,5 @@
 :root {
   --sarkari-red: #ab1e1e;
-  --sarkari-pink: #ff00bf;
   --sarkari-green: #008000;
   --border-color: #000000;
 }
@@ -115,6 +114,7 @@ th, td {
   vertical-align: top;
 }
 
+/* Jo upar table headers hain wo Green rahenge */
 .green-header {
   background-color: var(--sarkari-green);
   color: white;
@@ -122,8 +122,10 @@ th, td {
   font-size: 18px;
 }
 
+/* --- CHANGES HERE --- */
+/* Pehle ye Pink tha, ab Green kar diya hai */
 .section-header {
-  background-color: var(--sarkari-pink);
+  background-color: var(--sarkari-green); 
   color: white;
   padding: 8px;
   text-align: center;
@@ -137,9 +139,11 @@ th, td {
   font-weight: bold;
   text-decoration: none;
 }
+
+/* Link ka color Pink se Blue kar diya taaki saaf dikhe */
 .click-here {
   font-weight: bold;
-  color: var(--sarkari-pink) !important; 
+  color: blue !important; 
 }
 
 /* Mobile Responsive */
