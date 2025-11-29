@@ -60,5 +60,51 @@ export const jobsData = [
     applicationFee: [],
     vacancyDetails: [],
     links: { applyOnline: "#", notification: "#", officialWebsite: "#" }
-  }
+  },
+  {
+    id: 4,
+    title: "OICL AO Recruitment 2025 Online Form",
+    shortInfo: "Oriental Insurance Company Limited (OICL) has released the recruitment notification for 300 Administrative Officer (Scale-I) posts. Candidates can apply online from 1st December 2025.",
+    postDate: "29/11/2025",
+    category: "Latest Jobs",
+
+    // 1. Important Dates
+    importantDates: [
+      { label: "Application Begin", value: "01/12/2025" },
+      { label: "Last Date for Apply", value: "15/12/2025" },
+      { label: "Exam Date (Prelims)", value: "10/01/2026" },
+      { label: "Exam Date (Mains)", value: "28/02/2026" }
+    ],
+
+    // 2. Application Fee
+    applicationFee: [
+      { category: "General / OBC / EWS", amount: "₹1000" },
+      { category: "SC / ST / PwD", amount: "₹250" },
+      { category: "Payment Mode", amount: "Online" }
+    ],
+
+    // 3. Age Limit
+    ageLimit: "Min: 21 Years | Max: 30 Years (As on 31/12/2025) | Age Relaxation as per rules",
+
+    // 4. Vacancy Details
+    vacancyDetails: [
+      { 
+        postName: "Administrative Officer (Generalist)", 
+        totalPost: 285, 
+        eligibility: "Bachelor / Master Degree in Any Stream with 60% Marks (55% for SC/ST)" 
+      },
+      { 
+        postName: "Administrative Officer (Hindi)", 
+        totalPost: 15, 
+        eligibility: "Post Graduate Degree in Hindi / English with 60% Marks" 
+      }
+    ],
+
+    // 5. Important Links
+    links: {
+      applyOnline: "https://orientalinsurance.org.in/careers", 
+      notification: "https://orientalinsurance.org.in/careers", 
+      officialWebsite: "https://orientalinsurance.org.in/" 
+    }
+  },
 ];
