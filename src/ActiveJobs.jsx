@@ -75,9 +75,9 @@ function ActiveJobs() {
                   {getLastDateString(job)}
                 </td>
                 <td style={{padding: '12px'}}>
-                  <Link to={`/job/${job.id}`} style={{ textDecoration: 'none', color: 'blue', fontWeight: '500', fontSize: '15px' }}>
-                    {job.title}
-                  </Link>
+                  <Link to={`/${job.slug}`} style={{ textDecoration: 'none', color: 'blue', fontWeight: '500', fontSize: '15px' }}>
+  {job.title}
+</Link>
                 </td>
               </tr>
             ))
