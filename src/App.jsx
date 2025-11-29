@@ -82,7 +82,15 @@ function JobDetails() {
       />
 
       <h1 className="job-title">{job.title}</h1>
-      <p style={{textAlign: 'center'}}><strong>Post Date:</strong> {job.postDate} | <strong>Short Info:</strong> {job.shortInfo}</p>
+      {/* Post Date Alag Line mein */}
+      <p style={{textAlign: 'center', fontWeight: 'bold', color: '#ab1e1e', marginBottom: '10px'}}>
+        Post Date: {job.postDate}
+      </p>
+
+      {/* Short Info Alag Line mein (Justified) */}
+      <p style={{textAlign: 'justify', marginBottom: '20px'}}>
+        <strong>Short Information : </strong> {job.shortInfo}
+      </p>
 
       {job.importantDates.length > 0 && (
         <table>
