@@ -4,6 +4,7 @@ import { jobsData } from './jobsData';
 import About from './About';
 import Contact from './Contact';
 import Privacy from './Privacy';
+import SEO from './SEO';
 
 // --- Components ---
 
@@ -41,7 +42,6 @@ function Home() {
             <Link to={`/job/${job.id}`}>{job.title}</Link>
           </li>
         ))}
-        {/* Fake links for design */}
         <li><Link to="/">More {title}...</Link></li>
       </ul>
     </div>
@@ -49,6 +49,12 @@ function Home() {
 
   return (
     <div className="main-grid">
+      <SEO 
+        title="Sarkari Result 2025, Sarkari Naukri, Online Form" 
+        description="TopOnlineForm provides latest Sarkari Result, Sarkari Naukri 2025, Admit Card, Answer Key and Online Forms for all government exams."
+        keywords="Sarkari Result, Sarkari Naukri, Govt Jobs, Online Form, Admit Card 2025"
+        url="https://toponlineform.com/"
+      />
       <JobBox title="Result" jobs={results} />
       <JobBox title="Admit Card" jobs={admitCards} />
       <JobBox title="Latest Jobs" jobs={latestJobs} />
@@ -62,8 +68,19 @@ function JobDetails() {
 
   if (!job) return <h2 style={{textAlign:'center', marginTop: '20px'}}>Job Not Found</h2>;
 
+  // SEO Keywords banana (Title se keywords nikalna)
+  const keywords = `${job.title}, Apply Online, Notification PDF, Exam Date, Fees, Eligibility, Syllabus`;
+
   return (
     <div className="job-container">
+      {/* Dynamic SEO for Every Job */}
+      <SEO 
+        title={job.title} 
+        description={job.shortInfo}
+        keywords={keywords}
+        url={`https://toponlineform.com/job/${job.id}`}
+      />
+
       <h1 className="job-title">{job.title}</h1>
       <p style={{textAlign: 'center'}}><strong>Post Date:</strong> {job.postDate} | <strong>Short Info:</strong> {job.shortInfo}</p>
 
