@@ -8,54 +8,16 @@ import SEO from './SEO';
 import CategoryPage from './CategoryPage';
 import ActiveJobs from './ActiveJobs';
 
-// --- Navbar Component (Contains Header, Social, Search & Menu) ---
+// --- Navbar Component (Ab yahan sirf Header aur Menu hai) ---
 function Navbar() {
-  const [searchTerm, setSearchTerm] = useState("");
-  
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if(searchTerm.trim()) {
-      alert("Search functionality coming soon for: " + searchTerm); 
-    }
-  };
-
   return (
     <>
-      {/* --- STICKY WRAPPER START --- */}
-      {/* Ye div screen ke top par chipak jayega */}
       <div className="sticky-top">
-        
-        {/* 1. RED HEADER */}
         <div className="header">
           <h1>TOP ONLINE FORM</h1>
           <p>www.TopOnlineForm.com</p>
         </div>
 
-        {/* 2. ACTION BAR (Social + Search) */}
-        <div className="action-bar">
-          <div className="social-group">
-            <a href="https://whatsapp.com" target="_blank" className="social-btn whatsapp">
-               Join WhatsApp
-            </a>
-            <a href="https://telegram.org" target="_blank" className="social-btn telegram">
-               Join Telegram
-            </a>
-          </div>
-          
-          <div className="search-container">
-            <form onSubmit={handleSearch}>
-              <input 
-                type="text" 
-                placeholder="Search jobs..." 
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <button type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-
-        {/* 3. BLACK MENU */}
         <div className="navbar">
           <Link to="/">Home</Link>
           <Link to="/active-jobs">Active Jobs</Link>
@@ -65,9 +27,7 @@ function Navbar() {
           <Link to="/answer-key">Answer Key</Link>
           <Link to="/syllabus">Syllabus</Link>
         </div>
-
       </div> 
-      {/* --- STICKY WRAPPER END --- */}
 
       <div className="clean-note">
         <p>✨ Welcome to TopOnlineForm.com — India's Most Trusted & Clean Job Portal. No Ads, Just Information. ✨</p>
@@ -76,12 +36,21 @@ function Navbar() {
   );
 }
 
-// --- Home Component (Only Grids) ---
+// --- Home Component (Grid me Buttons aur Search add kiya) ---
 function Home() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if(searchTerm.trim()) {
+      alert("Search functionality coming soon for: " + searchTerm); 
+    }
+  };
+
+  // Data Filters
   const latestJobs = jobsData.filter(job => job.category === "Latest Jobs").slice(0, 20);
   const admitCards = jobsData.filter(job => job.category === "Admit Card").slice(0, 20);
   const results = jobsData.filter(job => job.category === "Result").slice(0, 20);
-  
   const answerKeys = jobsData.filter(job => job.category === "Answer Key").slice(0, 7);
   const syllabus = jobsData.filter(job => job.category === "Syllabus").slice(0, 7);
   const previousPapers = jobsData.filter(job => job.category === "Previous Paper").slice(0, 7);
@@ -113,12 +82,43 @@ function Home() {
         url="https://toponlineform.com/"
       />
       
-      {/* ROW 1 */}
+      {/* --- SPECIAL ACTION ROW INSIDE GRID --- */}
+      
+      {/* 1. Left Column: WhatsApp Button */}
+      <div className="action-cell">
+        <a href="https://whatsapp.com" target="_blank" className="social-btn whatsapp full-width">
+           Join WhatsApp Group
+        </a>
+      </div>
+
+      {/* 2. Middle Column: Telegram Button */}
+      <div className="action-cell">
+        <a href="https://telegram.org" target="_blank" className="social-btn telegram full-width">
+           Join Telegram Channel
+        </a>
+      </div>
+
+      {/* 3. Right Column: Search Bar */}
+      <div className="action-cell">
+         <form onSubmit={handleSearch} className="grid-search-form">
+            <input 
+              type="text" 
+              placeholder="Search jobs..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button type="submit">Search</button>
+          </form>
+      </div>
+
+      {/* --- JOB BOXES START HERE --- */}
+      
+      {/* Row 1 */}
       <JobBox title="Latest Jobs" jobs={latestJobs} linkTo="/latest-jobs" />
       <JobBox title="Admit Card" jobs={admitCards} linkTo="/admit-card" />
       <JobBox title="Result" jobs={results} linkTo="/results" />
 
-      {/* ROW 2 */}
+      {/* Row 2 */}
       <JobBox title="Answer Key" jobs={answerKeys} linkTo="/answer-key" />
       <JobBox title="Syllabus" jobs={syllabus} linkTo="/syllabus" />
       <JobBox title="Previous Paper" jobs={previousPapers} linkTo="/previous-papers" />
@@ -126,7 +126,7 @@ function Home() {
   );
 }
 
-// --- Job Details ---
+// --- Job Details (No Change) ---
 function JobDetails() {
   const { slug } = useParams();
   const job = jobsData.find((j) => j.slug === slug);
@@ -140,14 +140,8 @@ function JobDetails() {
       <SEO title={job.title} description={job.shortInfo} keywords={keywords} url={`https://toponlineform.com/${job.slug}`} />
 
       <h1 className="job-title">{job.title}</h1>
-      
-      <p style={{textAlign: 'justify', marginBottom: '10px'}}>
-        <strong>Post Date : </strong> {job.postDate}
-      </p>
-
-      <p style={{textAlign: 'justify', marginBottom: '20px'}}>
-        <strong>Short Information : </strong> {job.shortInfo}
-      </p>
+      <p style={{textAlign: 'justify', marginBottom: '10px'}}><strong>Post Date : </strong> {job.postDate}</p>
+      <p style={{textAlign: 'justify', marginBottom: '20px'}}><strong>Short Information : </strong> {job.shortInfo}</p>
 
       {job.importantDates.length > 0 && (
         <table>
@@ -163,34 +157,17 @@ function JobDetails() {
           </tbody>
         </table>
       )}
-
-      {job.ageLimit && (
-        <>
-          <div className="section-header">Age Limit</div>
-          <p style={{textAlign: 'center', border: '1px solid #000', padding: '10px'}}>{job.ageLimit}</p>
-        </>
-      )}
-
+      {/* Age, Vacancy, Links sections... (Same as before) */}
+      {job.ageLimit && (<><div className="section-header">Age Limit</div><p style={{textAlign: 'center', border: '1px solid #000', padding: '10px'}}>{job.ageLimit}</p></>)}
       {job.vacancyDetails.length > 0 && (
         <>
           <div className="section-header">Vacancy Details</div>
           <table>
-            <thead>
-              <tr style={{background: '#f2f2f2'}}>
-                <th>Post Name</th>
-                <th>Total Post</th>
-                <th>Eligibility</th>
-              </tr>
-            </thead>
-            <tbody>
-              {job.vacancyDetails.map((item, index) => (
-                <tr key={index}><td>{item.postName}</td><td>{item.totalPost}</td><td>{item.eligibility}</td></tr>
-              ))}
-            </tbody>
+            <thead><tr style={{background: '#f2f2f2'}}><th>Post Name</th><th>Total Post</th><th>Eligibility</th></tr></thead>
+            <tbody>{job.vacancyDetails.map((item, index) => (<tr key={index}><td>{item.postName}</td><td>{item.totalPost}</td><td>{item.eligibility}</td></tr>))}</tbody>
           </table>
         </>
       )}
-
       <div className="section-header">Important Links</div>
       <table className="important-links">
         <tbody>
@@ -223,7 +200,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:slug" element={<JobDetails />} />
-        
         <Route path="/active-jobs" element={<ActiveJobs />} />
         <Route path="/latest-jobs" element={<CategoryPage category="Latest Jobs" title="All Latest Jobs" />} />
         <Route path="/results" element={<CategoryPage category="Result" title="All Results" />} />
@@ -231,7 +207,6 @@ function App() {
         <Route path="/answer-key" element={<CategoryPage category="Answer Key" title="All Answer Keys" />} />
         <Route path="/syllabus" element={<CategoryPage category="Syllabus" title="Syllabus & Exam Pattern" />} />
         <Route path="/previous-papers" element={<CategoryPage category="Previous Paper" title="Previous Year Papers" />} />
-
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Privacy />} />
