@@ -1,6 +1,7 @@
 :root {
   --sarkari-red: #ab1e1e;
   --sarkari-green: #008000;
+  --sarkari-blue: #007bff;
   --border-color: #000000;
 }
 
@@ -10,96 +11,156 @@ body {
   background-color: #ffffff;
 }
 
-/* Header & Navbar */
+a { text-decoration: none; }
+
+/* --- 1. HEADER & SEARCH BAR --- */
 .header {
   background-color: var(--sarkari-red);
   color: white;
-  padding: 15px;
+  padding: 15px 10px;
   text-align: center;
 }
-.header h1 { margin: 0; font-size: 24px; }
-.header p { margin: 5px 0 0; font-size: 14px; color: #ffe6e6; }
 
+.header h1 { margin: 0; font-size: 28px; font-weight: 900; letter-spacing: 1px; }
+.header p { margin: 5px 0 15px; font-size: 14px; color: #ffe6e6; }
+
+/* Search Container Styling */
+.search-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.search-container input {
+  padding: 8px;
+  width: 70%;
+  max-width: 300px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-container button {
+  padding: 8px 15px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.search-container button:hover { background-color: #000; }
+
+/* --- 2. SOCIAL ACTION BAR (WhatsApp/Telegram) --- */
+.action-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  font-size: 14px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+.whatsapp { background-color: #25D366; }
+.whatsapp:hover { background-color: #128C7E; }
+
+.telegram { background-color: #0088cc; }
+.telegram:hover { background-color: #005580; }
+
+/* --- 3. NAVBAR --- */
 .navbar {
   background-color: #000;
-  overflow: hidden;
   text-align: center;
+  border-top: 2px solid white;
 }
+
 .navbar a {
   display: inline-block;
   color: white;
+  padding: 12px 15px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.navbar a:hover { background-color: #444; color: #ffcc00; }
+
+/* --- 4. CLEAN NOTE (No Ads Message) --- */
+.clean-note {
+  background-color: #e6fffa; /* Light Green background */
+  border-bottom: 1px solid #b2f5ea;
+  padding: 8px;
   text-align: center;
-  padding: 10px 16px;
-  text-decoration: none;
+  color: #006600;
   font-weight: bold;
-}
-.navbar a:hover { background-color: #333; }
-
-/* Marquee (Chalti hui line) */
-.marquee-container {
-  background-color: #ffffcc;
-  border-bottom: 2px solid #000;
-  padding: 5px;
-  color: blue;
-  font-weight: bold;
+  font-size: 13px;
 }
 
-/* Homepage Boxes */
+/* --- 5. HOMEPAGE BOXES --- */
 .main-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 10px;
+  grid-template-columns: repeat(3, 1fr); /* 3 Columns Layout */
+  gap: 15px;
+  padding: 15px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .box-column {
   border: 2px solid var(--border-color);
+  background: white;
 }
 
+/* Homepage Boxes Headers (Standard Red) */
 .box-header {
   background-color: var(--sarkari-red);
   color: white;
-  padding: 8px;
+  padding: 10px;
   text-align: center;
   font-weight: bold;
   font-size: 18px;
 }
 
-.box-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+.box-list { list-style: none; padding: 0; margin: 0; }
 
 .box-list li {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-.box-list li a {
-  text-decoration: none;
-  color: blue;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
   font-size: 14px;
+  line-height: 1.4;
 }
-.box-list li a:hover { text-decoration: underline; color: red; }
 
-/* Job Details Page (Table Styling) */
+.box-list li a { color: #0000EE; text-decoration: none; }
+.box-list li a:hover { color: red; text-decoration: underline; }
+
+/* --- 6. JOB DETAILS PAGE (Green Theme) --- */
 .job-container {
   max-width: 900px;
   margin: 20px auto;
-  padding: 10px;
+  padding: 15px;
   border: 1px solid #ccc;
+  background: white;
 }
 
 .job-title {
   color: var(--sarkari-red);
   text-align: center;
-  font-size: 22px;
+  font-size: 24px;
   margin-bottom: 20px;
+  line-height: 1.4;
 }
 
+/* Table Styling */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -109,44 +170,52 @@ table {
 
 th, td {
   border: 1px solid var(--border-color);
-  padding: 10px;
-  text-align: left;
+  padding: 12px;
   vertical-align: top;
 }
 
-/* Jo upar table headers hain wo Green rahenge */
-.green-header {
+/* Green Headers inside Job Page (User Request) */
+.green-header, .section-header {
   background-color: var(--sarkari-green);
   color: white;
   text-align: center;
   font-size: 18px;
+  font-weight: bold;
 }
 
-/* --- CHANGES HERE --- */
-/* Pehle ye Pink tha, ab Green kar diya hai */
 .section-header {
-  background-color: var(--sarkari-green); 
-  color: white;
-  padding: 8px;
-  text-align: center;
-  font-weight: bold;
-  margin-top: 10px;
+  padding: 10px;
+  margin-top: 20px;
   border: 2px solid var(--border-color);
 }
 
-.important-links a {
-  color: blue;
+/* Links Styling */
+.important-links a, .click-here {
+  color: blue !important;
   font-weight: bold;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
-/* Link ka color Pink se Blue kar diya taaki saaf dikhe */
-.click-here {
-  font-weight: bold;
-  color: blue !important; 
-}
-
-/* Mobile Responsive */
+/* --- 7. MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
-  .main-grid { grid-template-columns: 1fr; }
+  /* Phone par 3 column ko 1 column bana do */
+  .main-grid {
+    grid-template-columns: 1fr; 
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .header h1 { font-size: 22px; }
+  
+  .navbar a {
+    padding: 10px;
+    font-size: 12px;
+  }
+  
+  /* Social buttons stack on mobile */
+  .social-btn {
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+  }
 }
