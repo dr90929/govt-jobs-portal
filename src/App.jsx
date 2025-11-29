@@ -1,6 +1,9 @@
 import React from 'react';
 import { Routes, Route, Link, useParams } from 'react-router-dom';
 import { jobsData } from './jobsData';
+import About from './About';
+import Contact from './Contact';
+import Privacy from './Privacy';
 
 // --- Components ---
 
@@ -38,8 +41,8 @@ function Home() {
             <Link to={`/job/${job.id}`}>{job.title}</Link>
           </li>
         ))}
-        {/* Fake links to make it look full */}
-        <li><a href="#">More Results...</a></li>
+        {/* Fake links for design */}
+        <li><Link to="/">More {title}...</Link></li>
       </ul>
     </div>
   );
@@ -62,10 +65,8 @@ function JobDetails() {
   return (
     <div className="job-container">
       <h1 className="job-title">{job.title}</h1>
-      
       <p style={{textAlign: 'center'}}><strong>Post Date:</strong> {job.postDate} | <strong>Short Info:</strong> {job.shortInfo}</p>
 
-      {/* Dates & Fees Table */}
       {job.importantDates.length > 0 && (
         <table>
           <tbody>
@@ -74,22 +75,13 @@ function JobDetails() {
               <th className="green-header" width="50%">Application Fee</th>
             </tr>
             <tr>
-              <td>
-                <ul>
-                  {job.importantDates.map((d, i) => <li key={i}><strong>{d.label}:</strong> {d.value}</li>)}
-                </ul>
-              </td>
-              <td>
-                <ul>
-                  {job.applicationFee.map((f, i) => <li key={i}><strong>{f.category}:</strong> {f.amount}</li>)}
-                </ul>
-              </td>
+              <td><ul>{job.importantDates.map((d, i) => <li key={i}><strong>{d.label}:</strong> {d.value}</li>)}</ul></td>
+              <td><ul>{job.applicationFee.map((f, i) => <li key={i}><strong>{f.category}:</strong> {f.amount}</li>)}</ul></td>
             </tr>
           </tbody>
         </table>
       )}
 
-      {/* Age Limit */}
       {job.ageLimit && (
         <>
           <div className="section-header">Age Limit</div>
@@ -97,7 +89,6 @@ function JobDetails() {
         </>
       )}
 
-      {/* Vacancy Details */}
       {job.vacancyDetails.length > 0 && (
         <>
           <div className="section-header">Vacancy Details</div>
@@ -111,33 +102,19 @@ function JobDetails() {
             </thead>
             <tbody>
               {job.vacancyDetails.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.postName}</td>
-                  <td>{item.totalPost}</td>
-                  <td>{item.eligibility}</td>
-                </tr>
+                <tr key={index}><td>{item.postName}</td><td>{item.totalPost}</td><td>{item.eligibility}</td></tr>
               ))}
             </tbody>
           </table>
         </>
       )}
 
-      {/* Important Links */}
       <div className="section-header">Important Links</div>
       <table className="important-links">
         <tbody>
-          <tr>
-            <td><strong>Apply Online</strong></td>
-            <td align="center"><a href={job.links.applyOnline} className="click-here" target="_blank" rel="noreferrer">Click Here</a></td>
-          </tr>
-          <tr>
-            <td><strong>Download Notification</strong></td>
-            <td align="center"><a href={job.links.notification} className="click-here" target="_blank" rel="noreferrer">Click Here</a></td>
-          </tr>
-          <tr>
-            <td><strong>Official Website</strong></td>
-            <td align="center"><a href={job.links.officialWebsite} className="click-here" target="_blank" rel="noreferrer">Click Here</a></td>
-          </tr>
+          <tr><td><strong>Apply Online</strong></td><td align="center"><a href={job.links.applyOnline} className="click-here" target="_blank" rel="noreferrer">Click Here</a></td></tr>
+          <tr><td><strong>Download Notification</strong></td><td align="center"><a href={job.links.notification} className="click-here" target="_blank" rel="noreferrer">Click Here</a></td></tr>
+          <tr><td><strong>Official Website</strong></td><td align="center"><a href={job.links.officialWebsite} className="click-here" target="_blank" rel="noreferrer">Click Here</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -147,6 +124,11 @@ function JobDetails() {
 function Footer() {
   return (
     <div style={{background: '#000', color: 'white', padding: '20px', textAlign: 'center', marginTop: '20px'}}>
+      <div style={{marginBottom: '10px'}}>
+        <Link to="/about" style={{color: 'white', margin: '0 10px'}}>About Us</Link> | 
+        <Link to="/contact" style={{color: 'white', margin: '0 10px'}}>Contact Us</Link> | 
+        <Link to="/privacy" style={{color: 'white', margin: '0 10px'}}>Privacy Policy</Link>
+      </div>
       <p>Copyright © 2025 TopOnlineForm.com. All Rights Reserved.</p>
       <p style={{fontSize: '12px', color: '#ccc'}}>Disclaimer: This is not an official government website.</p>
     </div>
@@ -160,6 +142,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/job/:id" element={<JobDetails />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
       </Routes>
       <Footer />
     </>
