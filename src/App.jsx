@@ -8,24 +8,66 @@ import SEO from './SEO';
 import CategoryPage from './CategoryPage';
 import ActiveJobs from './ActiveJobs';
 
-// --- Navbar Component (Ab ye sirf Header aur Menu dikhayega) ---
+// --- Navbar Component (Contains Header, Social, Search & Menu) ---
 function Navbar() {
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if(searchTerm.trim()) {
+      alert("Search functionality coming soon for: " + searchTerm); 
+    }
+  };
+
   return (
     <>
-      <div className="header">
-        <h1>TOP ONLINE FORM</h1>
-        <p>www.TopOnlineForm.com</p>
-      </div>
+      {/* --- STICKY WRAPPER START --- */}
+      {/* Ye div screen ke top par chipak jayega */}
+      <div className="sticky-top">
+        
+        {/* 1. RED HEADER */}
+        <div className="header">
+          <h1>TOP ONLINE FORM</h1>
+          <p>www.TopOnlineForm.com</p>
+        </div>
 
-      <div className="navbar">
-        <Link to="/">Home</Link>
-        <Link to="/active-jobs">Active Jobs</Link>
-        <Link to="/latest-jobs">Latest Jobs</Link>
-        <Link to="/results">Results</Link>
-        <Link to="/admit-card">Admit Card</Link>
-        <Link to="/answer-key">Answer Key</Link>
-        <Link to="/syllabus">Syllabus</Link>
-      </div>
+        {/* 2. ACTION BAR (Social + Search) */}
+        <div className="action-bar">
+          <div className="social-group">
+            <a href="https://whatsapp.com" target="_blank" className="social-btn whatsapp">
+               Join WhatsApp
+            </a>
+            <a href="https://telegram.org" target="_blank" className="social-btn telegram">
+               Join Telegram
+            </a>
+          </div>
+          
+          <div className="search-container">
+            <form onSubmit={handleSearch}>
+              <input 
+                type="text" 
+                placeholder="Search jobs..." 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <button type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+
+        {/* 3. BLACK MENU */}
+        <div className="navbar">
+          <Link to="/">Home</Link>
+          <Link to="/active-jobs">Active Jobs</Link>
+          <Link to="/latest-jobs">Latest Jobs</Link>
+          <Link to="/results">Results</Link>
+          <Link to="/admit-card">Admit Card</Link>
+          <Link to="/answer-key">Answer Key</Link>
+          <Link to="/syllabus">Syllabus</Link>
+        </div>
+
+      </div> 
+      {/* --- STICKY WRAPPER END --- */}
 
       <div className="clean-note">
         <p>✨ Welcome to TopOnlineForm.com — India's Most Trusted & Clean Job Portal. No Ads, Just Information. ✨</p>
@@ -34,23 +76,12 @@ function Navbar() {
   );
 }
 
-// --- Home Component (Search aur Buttons yahan shift ho gaye) ---
+// --- Home Component (Only Grids) ---
 function Home() {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if(searchTerm.trim()) {
-      alert("Search functionality coming soon for: " + searchTerm); 
-    }
-  };
-
-  // Row 1 Data
   const latestJobs = jobsData.filter(job => job.category === "Latest Jobs").slice(0, 20);
   const admitCards = jobsData.filter(job => job.category === "Admit Card").slice(0, 20);
   const results = jobsData.filter(job => job.category === "Result").slice(0, 20);
-
-  // Row 2 Data
+  
   const answerKeys = jobsData.filter(job => job.category === "Answer Key").slice(0, 7);
   const syllabus = jobsData.filter(job => job.category === "Syllabus").slice(0, 7);
   const previousPapers = jobsData.filter(job => job.category === "Previous Paper").slice(0, 7);
@@ -74,54 +105,28 @@ function Home() {
   );
 
   return (
-    <div>
+    <div className="main-grid">
       <SEO 
         title="Sarkari Result 2025, Sarkari Naukri, Online Form" 
         description="TopOnlineForm provides latest Sarkari Result, Sarkari Naukri 2025, Admit Card, Answer Key and Online Forms."
         keywords="Sarkari Result, Sarkari Naukri, Govt Jobs, Online Form, Admit Card 2025"
         url="https://toponlineform.com/"
       />
+      
+      {/* ROW 1 */}
+      <JobBox title="Latest Jobs" jobs={latestJobs} linkTo="/latest-jobs" />
+      <JobBox title="Admit Card" jobs={admitCards} linkTo="/admit-card" />
+      <JobBox title="Result" jobs={results} linkTo="/results" />
 
-      {/* --- NEW ACTION ROW (Social Buttons + Search) --- */}
-      <div className="home-action-row">
-        <div className="social-group">
-          <a href="https://whatsapp.com" target="_blank" className="social-btn whatsapp">
-             Follow WhatsApp Channel
-          </a>
-          <a href="https://telegram.org" target="_blank" className="social-btn telegram">
-             Join Telegram Channel
-          </a>
-        </div>
-        
-        <div className="home-search-container">
-          <form onSubmit={handleSearch}>
-            <input 
-              type="text" 
-              placeholder="Search..." 
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-
-      <div className="main-grid">
-        {/* ROW 1 */}
-        <JobBox title="Latest Jobs" jobs={latestJobs} linkTo="/latest-jobs" />
-        <JobBox title="Admit Card" jobs={admitCards} linkTo="/admit-card" />
-        <JobBox title="Result" jobs={results} linkTo="/results" />
-
-        {/* ROW 2 */}
-        <JobBox title="Answer Key" jobs={answerKeys} linkTo="/answer-key" />
-        <JobBox title="Syllabus" jobs={syllabus} linkTo="/syllabus" />
-        <JobBox title="Previous Paper" jobs={previousPapers} linkTo="/previous-papers" />
-      </div>
+      {/* ROW 2 */}
+      <JobBox title="Answer Key" jobs={answerKeys} linkTo="/answer-key" />
+      <JobBox title="Syllabus" jobs={syllabus} linkTo="/syllabus" />
+      <JobBox title="Previous Paper" jobs={previousPapers} linkTo="/previous-papers" />
     </div>
   );
 }
 
-// --- Job Details Component (No Change Here) ---
+// --- Job Details ---
 function JobDetails() {
   const { slug } = useParams();
   const job = jobsData.find((j) => j.slug === slug);
