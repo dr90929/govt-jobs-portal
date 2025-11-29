@@ -111,10 +111,13 @@ function JobDetails() {
 
 function Footer() {
   return (
-    <div style={{background:'#000', color:'white', padding:'20px', textAlign:'center', marginTop:'20px'}}>
-      <Link to="/about" style={{color:'white', margin:'0 10px'}}>About</Link> | 
-      <Link to="/contact" style={{color:'white', margin:'0 10px'}}>Contact</Link>
-      <p>Copyright © 2025 TopOnlineForm.com</p>
+    <div style={{background: '#000', color: 'white', padding: '20px', textAlign: 'center', marginTop: '20px'}}>
+      <div style={{marginBottom: '10px'}}>
+        <Link to="/about" style={{color: 'white', margin: '0 10px'}}>About Us</Link> | 
+        <Link to="/contact" style={{color: 'white', margin: '0 10px'}}>Contact Us</Link> | 
+        <Link to="/privacy" style={{color: 'white', margin: '0 10px'}}>Privacy Policy</Link>
+      </div>
+      <p>Copyright © 2025 TopOnlineForm.com. All Rights Reserved.</p>
     </div>
   );
 }
