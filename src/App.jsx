@@ -8,40 +8,13 @@ import SEO from './SEO';
 import CategoryPage from './CategoryPage';
 import ActiveJobs from './ActiveJobs';
 
-// --- Navbar & Search Component ---
+// --- Navbar Component (Ab ye sirf Header aur Menu dikhayega) ---
 function Navbar() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if(searchTerm.trim()) {
-      alert("Search functionality coming soon for: " + searchTerm); 
-    }
-  };
-
   return (
     <>
       <div className="header">
         <h1>TOP ONLINE FORM</h1>
         <p>www.TopOnlineForm.com</p>
-        
-        <div className="search-container">
-          <form onSubmit={handleSearch}>
-            <input 
-              type="text" 
-              placeholder="Search jobs here..." 
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <button type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-
-      <div className="action-bar">
-        <a href="https://whatsapp.com" target="_blank" className="social-btn whatsapp">Join WhatsApp Group</a>
-        <a href="https://telegram.org" target="_blank" className="social-btn telegram">Join Telegram Channel</a>
       </div>
 
       <div className="navbar">
@@ -61,12 +34,23 @@ function Navbar() {
   );
 }
 
-// --- Home Component (Correct Layout: Latest Jobs -> Admit Card -> Result) ---
+// --- Home Component (Search aur Buttons yahan shift ho gaye) ---
 function Home() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if(searchTerm.trim()) {
+      alert("Search functionality coming soon for: " + searchTerm); 
+    }
+  };
+
+  // Row 1 Data
   const latestJobs = jobsData.filter(job => job.category === "Latest Jobs").slice(0, 20);
   const admitCards = jobsData.filter(job => job.category === "Admit Card").slice(0, 20);
   const results = jobsData.filter(job => job.category === "Result").slice(0, 20);
-  
+
+  // Row 2 Data
   const answerKeys = jobsData.filter(job => job.category === "Answer Key").slice(0, 7);
   const syllabus = jobsData.filter(job => job.category === "Syllabus").slice(0, 7);
   const previousPapers = jobsData.filter(job => job.category === "Previous Paper").slice(0, 7);
@@ -78,7 +62,6 @@ function Home() {
         {jobs.length > 0 ? (
           jobs.map(job => (
             <li key={job.id}>
-              {/* CLEAN URL LINK */}
               <Link to={`/${job.slug}`}>{job.title}</Link>
             </li>
           ))
@@ -91,31 +74,56 @@ function Home() {
   );
 
   return (
-    <div className="main-grid">
+    <div>
       <SEO 
         title="Sarkari Result 2025, Sarkari Naukri, Online Form" 
         description="TopOnlineForm provides latest Sarkari Result, Sarkari Naukri 2025, Admit Card, Answer Key and Online Forms."
         keywords="Sarkari Result, Sarkari Naukri, Govt Jobs, Online Form, Admit Card 2025"
         url="https://toponlineform.com/"
       />
-      
-      {/* ROW 1: Latest Jobs | Admit Card | Result */}
-      <JobBox title="Latest Jobs" jobs={latestJobs} linkTo="/latest-jobs" />
-      <JobBox title="Admit Card" jobs={admitCards} linkTo="/admit-card" />
-      <JobBox title="Result" jobs={results} linkTo="/results" />
 
-      {/* ROW 2: Answer Key | Syllabus | Previous Paper */}
-      <JobBox title="Answer Key" jobs={answerKeys} linkTo="/answer-key" />
-      <JobBox title="Syllabus" jobs={syllabus} linkTo="/syllabus" />
-      <JobBox title="Previous Paper" jobs={previousPapers} linkTo="/previous-papers" />
+      {/* --- NEW ACTION ROW (Social Buttons + Search) --- */}
+      <div className="home-action-row">
+        <div className="social-group">
+          <a href="https://whatsapp.com" target="_blank" className="social-btn whatsapp">
+             Follow WhatsApp Channel
+          </a>
+          <a href="https://telegram.org" target="_blank" className="social-btn telegram">
+             Join Telegram Channel
+          </a>
+        </div>
+        
+        <div className="home-search-container">
+          <form onSubmit={handleSearch}>
+            <input 
+              type="text" 
+              placeholder="Search..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+
+      <div className="main-grid">
+        {/* ROW 1 */}
+        <JobBox title="Latest Jobs" jobs={latestJobs} linkTo="/latest-jobs" />
+        <JobBox title="Admit Card" jobs={admitCards} linkTo="/admit-card" />
+        <JobBox title="Result" jobs={results} linkTo="/results" />
+
+        {/* ROW 2 */}
+        <JobBox title="Answer Key" jobs={answerKeys} linkTo="/answer-key" />
+        <JobBox title="Syllabus" jobs={syllabus} linkTo="/syllabus" />
+        <JobBox title="Previous Paper" jobs={previousPapers} linkTo="/previous-papers" />
+      </div>
     </div>
   );
 }
 
-// --- Job Details (Slug Based Logic) ---
+// --- Job Details Component (No Change Here) ---
 function JobDetails() {
   const { slug } = useParams();
-  // Find job by SLUG, not ID
   const job = jobsData.find((j) => j.slug === slug);
 
   if (!job) return <h2 style={{textAlign:'center', marginTop: '20px'}}>Job Not Found</h2>;
@@ -203,14 +211,13 @@ function Footer() {
   );
 }
 
-// --- Main App Logic ---
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:slug" element={<JobDetails />} /> {/* This is key for Clean URL */}
+        <Route path="/:slug" element={<JobDetails />} />
         
         <Route path="/active-jobs" element={<ActiveJobs />} />
         <Route path="/latest-jobs" element={<CategoryPage category="Latest Jobs" title="All Latest Jobs" />} />
