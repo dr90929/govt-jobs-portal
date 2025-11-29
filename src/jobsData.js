@@ -105,6 +105,19 @@ export const jobsData = [
       applyOnline: "https://orientalinsurance.org.in/careers", 
       notification: "https://orientalinsurance.org.in/careers", 
       officialWebsite: "https://orientalinsurance.org.in/" 
+    },
+    {
+    id: 5,
+    title: "SSC CGL 2024 Tier-I Answer Key Released",
+    shortInfo: "Staff Selection Commission (SSC) has uploaded the tentative answer keys for Combined Graduate Level Examination (Tier-I) 2024.",
+    postDate: "30/11/2025",
+    category: "Answer Key", // Ye zaroori hai
+    importantDates: [{ label: "Answer Key Released", value: "30/11/2025" }],
+    applicationFee: [],
+    ageLimit: "",
+    vacancyDetails: [],
+    links: {
+      applyOnline: "#", notification: "#", officialWebsite: "#"
     }
   },
 ];
