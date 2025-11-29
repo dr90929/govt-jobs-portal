@@ -82,12 +82,12 @@ function JobDetails() {
       />
 
       <h1 className="job-title">{job.title}</h1>
-      {/* Post Date Alag Line mein */}
-      <p style={{textAlign: 'center', fontWeight: 'bold', color: '#ab1e1e', marginBottom: '10px'}}>
-        Post Date: {job.postDate}
+      {/* Post Date ab Short Info ki tarah left mein */}
+      <p style={{textAlign: 'justify', marginBottom: '10px'}}>
+        <strong>Post Date : </strong> {job.postDate}
       </p>
 
-      {/* Short Info Alag Line mein (Justified) */}
+      {/* Short Info (Ye waisa hi rahega) */}
       <p style={{textAlign: 'justify', marginBottom: '20px'}}>
         <strong>Short Information : </strong> {job.shortInfo}
       </p>
