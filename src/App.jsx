@@ -111,13 +111,23 @@ function JobDetails() {
 
 function Footer() {
   return (
-    <div style={{background: '#000', color: 'white', padding: '20px', textAlign: 'center', marginTop: '20px'}}>
-      <div style={{marginBottom: '10px'}}>
-        <Link to="/about" style={{color: 'white', margin: '0 10px'}}>About Us</Link> | 
-        <Link to="/contact" style={{color: 'white', margin: '0 10px'}}>Contact Us</Link> | 
-        <Link to="/privacy" style={{color: 'white', margin: '0 10px'}}>Privacy Policy</Link>
+    <div style={{background: '#000', color: 'white', padding: '25px', textAlign: 'center', marginTop: '20px', borderTop: '3px solid #ab1e1e'}}>
+      
+      {/* Important Links */}
+      <div style={{marginBottom: '15px'}}>
+        <Link to="/about" style={{color: 'white', margin: '0 10px', textDecoration:'none'}}>About Us</Link> | 
+        <Link to="/contact" style={{color: 'white', margin: '0 10px', textDecoration:'none'}}>Contact Us</Link> | 
+        <Link to="/privacy" style={{color: 'white', margin: '0 10px', textDecoration:'none'}}>Privacy Policy</Link>
       </div>
-      <p>Copyright © 2025 TopOnlineForm.com. All Rights Reserved.</p>
+
+      {/* Copyright Line */}
+      <p style={{fontWeight: 'bold', marginBottom: '10px'}}>Copyright © 2025 TopOnlineForm.com. All Rights Reserved.</p>
+      
+      {/* DISCLAIMER (Jo aapne manga) */}
+      <div style={{fontSize: '12px', color: '#bbb', maxWidth: '800px', margin: '0 auto', lineHeight: '1.5'}}>
+        <p><strong>Disclaimer:</strong> This is NOT an official government website. We provide information gathered from official notifications and newspapers. While we make every effort to provide accurate information, errors may occur. Please verify details from the official website before applying.</p>
+      </div>
+
     </div>
   );
 }
