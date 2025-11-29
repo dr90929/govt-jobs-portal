@@ -25,12 +25,11 @@ function CategoryPage({ category, title }) {
           {filteredJobs.length > 0 ? (
             filteredJobs.map(job => (
               <li key={job.id} style={{ padding: '15px' }}>
-                <Link to={`/job/${job.id}`} style={{ fontSize: '16px', fontWeight: '500' }}>
+                {/* Clean URL Slug Link */}
+                <Link to={`/${job.slug}`} style={{ fontSize: '16px', fontWeight: '500' }}>
                   {job.title}
                 </Link>
-                <span style={{ display: 'block', fontSize: '12px', color: '#666', marginTop: '5px' }}>
-                  Post Date: {job.postDate}
-                </span>
+                {/* Date removed as requested */}
               </li>
             ))
           ) : (
