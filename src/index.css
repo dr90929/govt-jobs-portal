@@ -1,7 +1,7 @@
 :root {
   --sarkari-red: #ab1e1e;
-  --sarkari-green: #008000;
-  --sarkari-blue: #007bff;
+  --sarkari-green: #008000; /* Ye Green Note ke liye use hoga */
+  --sarkari-blue: #1e73be; /* Ye Naya Professional Blue (Tables ke liye) */
   --border-color: #000000;
 }
 
@@ -47,13 +47,13 @@ a { text-decoration: none; }
 }
 .navbar a:hover { background-color: #444; color: #ffcc00; }
 
-/* --- CLEAN NOTE --- */
+/* --- CLEAN NOTE (Ye Green hi rahega) --- */
 .clean-note {
   background-color: #e6fffa;
   border-bottom: 1px solid #b2f5ea;
   padding: 8px;
   text-align: center;
-  color: #006600;
+  color: #006600; /* Dark Green Text */
   font-weight: bold;
   font-size: 13px;
 }
@@ -70,7 +70,7 @@ a { text-decoration: none; }
 
 /* --- ACTION CELLS (Buttons & Search inside Grid) --- */
 .action-cell {
-  margin-bottom: 5px; /* Thoda gap box se pehle */
+  margin-bottom: 5px; 
 }
 
 /* Social Buttons */
@@ -81,12 +81,12 @@ a { text-decoration: none; }
   border-radius: 5px;
   font-size: 14px;
   display: flex;
-  justify-content: center; /* Center text */
+  justify-content: center; 
   align-items: center;
 }
 
 .full-width {
-  width: 100%; /* Pura column cover karega */
+  width: 100%; 
   box-sizing: border-box;
 }
 
@@ -103,7 +103,7 @@ a { text-decoration: none; }
 }
 
 .grid-search-form input {
-  flex: 1; /* Jitni jagah bachi hai le lo */
+  flex: 1; 
   padding: 11px;
   border: 1px solid #ccc;
   border-radius: 4px 0 0 4px;
@@ -147,7 +147,7 @@ a { text-decoration: none; }
 .box-list li a { color: #0000EE; }
 .box-list li a:hover { color: red; text-decoration: underline; }
 
-/* --- JOB DETAILS --- */
+/* --- JOB DETAILS PAGE --- */
 .job-container {
   max-width: 900px;
   margin: 20px auto;
@@ -161,17 +161,45 @@ a { text-decoration: none; }
   font-size: 24px;
   margin-bottom: 20px;
 }
-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; border: 2px solid var(--border-color); }
-th, td { border: 1px solid var(--border-color); padding: 12px; vertical-align: top; }
-.green-header, .section-header { background-color: var(--sarkari-green); color: white; text-align: center; font-size: 18px; font-weight: bold; }
-.section-header { padding: 10px; margin-top: 20px; border: 2px solid var(--border-color); }
-.important-links a, .click-here { color: blue !important; font-weight: bold; text-decoration: underline; }
+
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-bottom: 20px; 
+  border: 2px solid var(--border-color); 
+}
+
+th, td { 
+  border: 1px solid var(--border-color); 
+  padding: 12px; 
+  vertical-align: top; 
+}
+
+/* --- CHANGES HERE: Ab ye BLUE ho gaya hai --- */
+.green-header, .section-header { 
+  background-color: var(--sarkari-blue); /* Changed from Green to Blue */
+  color: white; 
+  text-align: center; 
+  font-size: 18px; 
+  font-weight: bold; 
+}
+
+.section-header { 
+  padding: 10px; 
+  margin-top: 20px; 
+  border: 2px solid var(--border-color); 
+}
+
+.important-links a, .click-here { 
+  color: blue !important; 
+  font-weight: bold; 
+  text-decoration: underline; 
+}
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 768px) {
   .main-grid { grid-template-columns: 1fr; gap: 10px; padding: 10px; }
   
-  /* Mobile: Action cells bhi stack ho jayenge */
   .action-cell {
     margin-bottom: 0px; 
   }
